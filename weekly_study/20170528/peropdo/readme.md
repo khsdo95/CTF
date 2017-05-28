@@ -18,6 +18,5 @@
 그래서 방향을 돌려서 랜덤값을 맞추기로 했다. stack bof를 만들때, 랜덤값 24개면 ret를 덮을 수 있고 ret뒤에 바로 name buffer의 주소가 들어있기때문에 pop esp 가젯을 이용해서 name buffer를 커스텀 스택으로 만들고, name buffer에 rop chain을 넣어두는 방법을 이용했다.
 
 * nosolve.py 는 처음의 익스플로잇 시도로 eip 컨트롤까지 한 것.
-
 * solve.py 가 두 번째 방법으로 끝까지 익스플로잇 한 것.
-
+* find.c 는 pop esp; ~~~ ; ret 가젯으로 뛰기 위한 랜덤시드와 랜덤 횟수를 찾는 코드
