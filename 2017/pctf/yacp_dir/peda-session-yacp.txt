@@ -1,0 +1,3 @@
+break *EVP_MD_CTX_init
+break *EVP_DigestInit_ex
+
