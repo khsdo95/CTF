@@ -1,6 +1,5 @@
 ## Vulnerability and Exploitation 
-- Hongsik Kim
-- VOM (VIM Onion Messenger)
+- Hongsik Kim (w/ VOM)
 
 ---
 
@@ -87,9 +86,37 @@ namespace Cache {
 }
 ```
 
-@[1](Python from..import statement)
-@[3-4](bbb)
-@[4]
+@[10-16](Cache::find)
+@[13](Using strcmp)
+@[27-38](Cache::remove)
+@[31](Using String::compare)
+
+@[40-45](Cache::update)
+@[47-53](Cache::pop)
+
+---
+
++++
+@title[Code]
+
+```
+using namespace std;
+
+int main(){
+    char buf[100] = "abcd\x00efg";
+    string s1 = string(buf, 8);
+    string s2 = string(buf);
+    
+    if (!strcmp(s1.c_str(), s2.c_str()))
+        cout << "strcmp equal!!" << endl;
+
+    if (!s1.compare(s2))
+        cout << "compare equal!!" << endl;
+}
+```
+
+@[9](Executed)
+
 
 ---
 
