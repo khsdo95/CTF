@@ -148,43 +148,12 @@ int main(){
 ### Utils/Cache.cc
 
 ```C++
-#include "Cache.hh"
-
-namespace Cache {
-    Cache::Cache() {
-        count = 0;
-    }
-    Cache::~Cache() {
-    }
-    
-    Element* Cache::find(string url) {
-        for (auto it = data.begin(); it != data.end(); ++it) {
-            if (!strcmp(url.c_str(), (*it).first.c_str()))
-                return (*it).second;
-        }
-        return NULL;
-    }
-
-
     void Cache::insert(string url, string sender, string path) {
         if (this->is_full())
             return;
         Element* elem = new Element(path, sender);
         data.push_back(make_pair(url, elem));
         count++;
-    }
-
-    Element* Cache::remove(string url) {
-        auto elem = this->find(url);
-        if (elem){
-            for (auto it = data.begin(); it != data.end(); ++it) {
-                if (!url.compare((*it).first)) {
-                    it = data.erase(it);
-                    return elem;
-                }
-            }
-        }
-        return elem;
     }
 
     void Cache::update(string url) {
@@ -219,8 +188,21 @@ namespace Cache {
 }
 ```
 
-@[40-45](Cache::update)
-@[47-53](Cache::pop)
+@[8-13](Cache::update)
+@[15-21](Cache::pop)
+
+---
+
+## Exploit Scenario
+
+1. HandShake with target. |
+2. Send a image packet. |
+3. Send a image packet with `previous url + \"\x00BBBB\"`. It will trigger a bug. |
+4. Send some image packets to trigger `Cache::pop`. It will delete a Element. |
+5. Send a image packet to fill free area with setting path to our payload. |
+6. Send a image packet with same url in step 2. It will trigger `Cache::Element::GetPath` with controlled element. |
+7. We can exploit command injection with manipulated `path` |
+8. Get a shell! |
 
 ---
 
