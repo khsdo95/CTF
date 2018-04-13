@@ -117,6 +117,34 @@ int main(){
 
 ---
 
+### OnionMessenger.cc
+
+```C++
+    void OnionMessenger::HandleAArt(Message::ImgLayer *msg) {                      
+        auto sender = msg->GetSender();                                            
+        auto url = msg->GetUrl();                                                  
+        auto elem = image_cache->find(url);                                        
+        string path;                                                               
+        if (!elem){		// Cache Miss                                                              
+            provider->PushChat(sender, "\n" + Features::DisplayAArt(url, path));
+            if (image_cache->is_full()) {                                          
+                image_cache->pop();                                                
+            }                                                                      
+            image_cache->insert(url, sender, path);                                
+        } else {		// Cache Hit                                                               
+            provider->PushChat(sender, "\n" + Features::Asciiart(elem->GetPath().c_str()));
+            image_cache->update(url);                                              
+        }                                                                          
+        snprintf(recent_user, MAX_ID_LEN, "%s", sender.c_str());                   
+        delete msg;                                                                
+    }                                                
+```
+
+@[6-11](Cache Miss)
+@[12-15](Cache Hit)
+
+---
+ 
 ### Utils/Cache.cc
 
 ```C++
