@@ -10,6 +10,12 @@
 ---
 
 ## Vulnerabilities
+- Logical |
+    - Difference between strcmp and compare |
+
+- Memory |
+    - Use After Free |
+    - Command Injection |
 
 +++
 
@@ -195,14 +201,19 @@ int main(){
 
 ## Exploit Scenario
 
-- 1 HandShake with target. |
-- 2 Send a image packet. |
-- 3 Send a image packet with previous url + \"\x00BBBB\". It will trigger a bug. |
-- 4 Send some image packets to trigger Cache::pop. It will delete a Element. |
-- 5 Send a image packet to fill free area with setting path to our payload. |
-- 6 Send a image packet with same url in step 2. It will trigger Cache::Element::GetPath with controlled element. |
-- 7 We can exploit command injection with manipulated path |
-- 8 Get a shell! |
+- 1.HandShake with target. |
+- 2.Send a image packet. |
+- 3.Send a image packet with previous url+\x00BBBB. It will trigger a bug. |
+- 4.Send some image packets to trigger Cache::pop. It will delete a Element. |
+
+---
+
+## Exploit Scenario (Cont'd)
+
+- 5.Send a image packet to fill free area with setting path to our payload. |
+- 6.Send a image packet with same url in step 2. It will trigger GetPath with controlled element. |
+- 7.We can exploit command injection with manipulated path |
+- 8.Get a shell! |
 
 ---
 
