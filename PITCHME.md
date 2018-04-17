@@ -9,6 +9,12 @@
 
 ---
 
+---?image=assets/image/origin.jpg&size=auto 70%
+
+---?image=assets/image/cached.JPG&size=auto 70%
+
+---?image=assets/image/reply.jpg&size=auto 70%
+
 ## Vulnerabilities
 - Logical |
     - Difference between strcmp and compare |
@@ -134,13 +140,15 @@ void OnionMessenger::HandleAArt(Message::ImgLayer *msg) {
     auto elem = image_cache->find(url);                                        
     string path;                                                               
     if (!elem){		// Cache Miss                                                              
-        provider->PushChat(sender, "\n" + Features::DisplayAArt(url, path));
+        provider->PushChat(sender, "\n" + \
+            Features::DisplayAArt(url, path));
         if (image_cache->is_full()) {                                          
             image_cache->pop();                                                
         }                                                                      
         image_cache->insert(url, sender, path);                                
     } else {		// Cache Hit                                                               
-        provider->PushChat(sender, "\n" + Features::Asciiart(elem->GetPath().c_str()));
+        provider->PushChat(sender, "\n" + \
+            Features::Asciiart(elem->GetPath().c_str()));
         image_cache->update(url);                                              
     }                                                                          
     snprintf(recent_user, MAX_ID_LEN, "%s", sender.c_str());                   
