@@ -168,20 +168,26 @@ void OnionMessenger::HandleAArt(Message::ImgLayer *msg) {
 ---
 
 ## Exploit Scenario
-@[HandShake]()
 ---?image=assets/image/process1.png&size=60%
+@[](Handshake)
 <!-- .slide: data-background-transition="none" -->
 ---?image=assets/image/process2.png&size=60%
+@[](Heap spray)
 <!-- .slide: data-background-transition="none" -->
 ---?image=assets/image/process3.png&size=60%
+@[](Send a Image packet)
 <!-- .slide: data-background-transition="none" -->
 ---?image=assets/image/process4.png&size=60%
+@[](Concatination previous URL and NULL)
 <!-- .slide: data-background-transition="none" -->
 ---?image=assets/image/process5.png&size=60%
+@[](Make Cache Full. To trigger pop)
 <!-- .slide: data-background-transition="none" -->
 ---?image=assets/image/process6.png&size=60%
+@[](Overwrite string object of Element)
 <!-- .slide: data-background-transition="none" -->
 ---?image=assets/image/process3.png&size=60%
+@[](Trigger GetPath)
 <!-- .slide: data-background-transition="none" -->
 
 ---
