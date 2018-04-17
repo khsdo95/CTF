@@ -168,10 +168,10 @@ void OnionMessenger::HandleAArt(Message::ImgLayer *msg) {
 ---
 
 ## Exploit Scenario
----?image=assets/image/process1.png&size=60%
+![](assets/image/process1.png)
 @[](Handshake)
 <!-- .slide: data-background-transition="none" -->
----?image=assets/image/process2.png&size=60%
+![](assets/image/process2.png)
 @[](Heap spray)
 <!-- .slide: data-background-transition="none" -->
 ---?image=assets/image/process3.png&size=60%
