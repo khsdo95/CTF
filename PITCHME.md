@@ -14,8 +14,12 @@
 
 ---?image=assets/image/cached.JPG&size=auto 50%
 
+---
+
 ## /r Command
----?image=assets/image/reply.jpg&size=auto 50%
+---?image=assets/image/reply.jpg&size=auto 70%
+
+---
 
 ## Vulnerabilities
 - Logical |
@@ -25,7 +29,7 @@
     - Use After Free |
     - Command Injection |
 
-+++
+---
 
 ### poc.cc
 
@@ -158,26 +162,27 @@ void OnionMessenger::HandleAArt(Message::ImgLayer *msg) {
 }                                                
 ```
 
-@[6-11](Cache Miss)
-@[12-15](Cache Hit)
+@[6-12](Cache Miss)
+@[13-17](Cache Hit)
 
 ---
 
 ## Exploit Scenario
 
-- 1.HandShake with target. |
-- 2.Send a image packet. |
-- 3.Send a image packet with previous url+\x00BBBB. It will trigger a bug. |
-- 4.Send some image packets to trigger Cache::pop. It will delete a Element. |
-
----
-
-## Exploit Scenario (Cont'd)
-
-- 5.Send a image packet to fill free area with setting path to our payload. |
-- 6.Send a image packet with same url in step 2. It will trigger GetPath with controlled element. |
-- 7.We can exploit command injection with manipulated path |
-- 8.Get a shell! |
+1. HandShake with target.
+---?image=assets/image/process1.png&size=60%
+2. Send a image packet. 
+---?image=assets/image/process2.png&size=60%
+3. Send a image packet with previous url+\x00BBBB. It will trigger a bug.
+---?image=assets/image/process3.png&size=60%
+4. Send some image packets to trigger Cache::pop. It will delete a Element.
+---?image=assets/image/process4.png&size=60%
+5. Send a image packet to fill free area with setting path to our payload.
+---?image=assets/image/process5.png&size=60%
+6. Send a image packet with same url in step 2. It will trigger GetPath with controlled element.
+---?image=assets/image/process6.png&size=60%
+7. We can exploit command injection with manipulated path 
+8. Get a shell!
 
 ---
 
