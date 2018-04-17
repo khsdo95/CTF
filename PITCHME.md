@@ -169,20 +169,21 @@ void OnionMessenger::HandleAArt(Message::ImgLayer *msg) {
 
 ## Exploit Scenario
 
-1. HandShake with target.
+---
+### HandShake with target.
 ---?image=assets/image/process1.png&size=60%
-2. Send a image packet. 
+### Send a image packet. 
 ---?image=assets/image/process2.png&size=60%
-3. Send a image packet with previous url+\x00BBBB. It will trigger a bug.
+### Send a image packet with previous url+\x00BBBB. It will trigger a bug.
 ---?image=assets/image/process3.png&size=60%
-4. Send some image packets to trigger Cache::pop. It will delete a Element.
+### Send some image packets to trigger Cache::pop. It will delete a Element.
 ---?image=assets/image/process4.png&size=60%
-5. Send a image packet to fill free area with setting path to our payload.
+### Send a image packet to fill free area with setting path to our payload.
 ---?image=assets/image/process5.png&size=60%
-6. Send a image packet with same url in step 2. It will trigger GetPath with controlled element.
+### Send a image packet with same url in step 2. It will trigger GetPath with controlled element.
 ---?image=assets/image/process6.png&size=60%
-7. We can exploit command injection with manipulated path 
-8. Get a shell!
+### We can exploit command injection with manipulated path 
+### Get a shell!
 
 ---
 
