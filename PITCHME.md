@@ -9,11 +9,13 @@
 
 ---
 
----?image=assets/image/origin.jpg&size=auto 70%
+## Image File Cache
+---?image=assets/image/origin.jpg&size=auto 50%
 
----?image=assets/image/cached.JPG&size=auto 70%
+---?image=assets/image/cached.JPG&size=auto 50%
 
----?image=assets/image/reply.jpg&size=auto 70%
+## /r Command
+---?image=assets/image/reply.jpg&size=auto 50%
 
 ## Vulnerabilities
 - Logical |
